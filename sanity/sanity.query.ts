@@ -1,8 +1,8 @@
-import { groq } from "next-sanity";
 import client from "./sanity.client";
+import { groq } from "next-sanity";
 
 export async function getProfile() {
-  return client.fetch(
+  const result =  client.fetch(
     groq`*[_type == "profile"]{
       _id,
       fullName,
@@ -20,6 +20,8 @@ export async function getProfile() {
       skills
     }`
   );
+  console.log(result);
+  return result
 }
 
 export async function getJob() {
